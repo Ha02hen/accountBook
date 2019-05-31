@@ -1,0 +1,48 @@
+<cu-custom bgColor="bg-gradual-blue"><view slot="content">帐单列表</view></cu-custom>
+<view>
+  <scroll-view scroll-y class="scrollPage">
+    <view class="bg">
+      <!-- <view class="flex-sub">
+        <view class="solid-bottom text-xl padding">
+          <text class="text-white text-bold">预算结余</text>
+        </view>
+        <view class="padding">{{app.globalData.balance}}</view>
+      </view> -->
+      <view class="flex  justify-between">
+        <view wx:if="{{accountIncomeTotal==null}}" class="white padding solid-bottom text-lg margin-xs radius">收入：0</view>
+        <view wx:else class="white padding solid-bottom text-lg margin-xs radius">收入：{{accountIncomeTotal}}</view>
+        <view wx:if="{{accountCostTotal==null}}" class="white padding solid-bottom text-lg margin-xs radius">支出：0</view>
+        <view wx:else class="white padding solid-bottom text-lg margin-xs radius">支出：{{accountCostTotal}}</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="padding text-center">
+    <view bindtap='btnClick' class="padding-xl radius shadow-warp bg-blue margin-top td">记一笔</view>
+  </view>
+
+  <block wx:for="{{accountData}}" wx:key>
+    <navigator url='../new/index?id={{index}}'>
+      <view class="cu-list menu-avatar">
+        <view class="cu-item">
+          <image class="cu-avatar round lg" src="/images/{{item.type=='true'?'cost':'income'}}{{item.item}}.png"></image>
+          <view class="content">
+            <view class="text-black">{{item.desc}}</view>
+            <view class="text-gray text-sm flex">
+              <text class="text-cut">
+                  <text class="cuIcon-timefill text-gray margin-right-xs"></text> {{item.date}}   {{item.time}}
+              </text>
+            </view>
+          </view>
+          <view class="action">
+            <text class="text-green text-lg justify" wx:if="{{item.type == 'true'}}">{{item.cost}}  </text>
+            <text class="text-red text-lg justify" wx:else>{{item.income}}  </text>
+          </view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+  
+
+  
+</view>

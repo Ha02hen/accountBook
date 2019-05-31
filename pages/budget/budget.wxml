@@ -1,0 +1,22 @@
+<!--pages/budget/budget.wxml-->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">设置预算</view>
+</cu-custom>
+
+<form bindsubmit="formSubmit" bindreset="formReset">
+  <view class="cu-form-group margin-top">
+    <view class="title">预算</view>
+    <input placeholder="请输入" name="budget"></input>
+    <text class="text-orange">
+    </text>
+  </view>
+
+  <view class="box padding solid{{size?'s':''}}-left margin-top">
+    <view class="cu-bar btn-group">
+      <button class="cu-btn block bg-red margin-tb-sm lg" form-type='reset' loading='{{buttonloading}}'>重置</button>
+      <button class="cu-btn block bg-green margin-tb-sm lg" form-type='submit' name='type' loading='{{buttonloading}}'>保存</button>
+    </view>
+  </view>
+
+</form>

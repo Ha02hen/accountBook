@@ -1,0 +1,66 @@
+/* pages/chart/index.wxss */
+.container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    -webkit-text-size-adjust:none;
+    -webkit-user-select: none;
+    font-size: 35rpx;
+    color: #333;
+    font-family: Helvetica,Arial,"Helvetica Neue","Droid Sans","Microsoft YaHei",sans-serif;
+}
+.canvas {
+    width: 100%;
+    height: 200px;
+}
+.swiper-tab {
+  height: 40px;
+  line-height: 40px;
+  background: #1b82d1;
+  color: rgba(255, 255, 255, 1);
+  display: flex;
+  position: relative;
+  z-index: 2;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.swiper-tab-list {
+  margin: 0 10px;
+  padding: 0 4px;
+  font-size: 15px;
+}
+ 
+.on {
+  border-bottom:3px solid #fff;
+  color: #fff;
+}
+ 
+.title {
+  padding: 10rpx 0 10rpx 20rpx;
+  background-color: #fff;
+}
+ 
+.title text {
+  border-left: 2px solid #1b82d1;
+  padding-left: 20rpx;
+}
+ 
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+ 
+swiper-item scroll-view {
+  height: 100%;
+}
+ 
+scroll-view .canvas {
+  width: 100%;
+  height: 100%;
+  margin-top: 20rpx;
+}

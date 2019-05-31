@@ -1,0 +1,44 @@
+<!-- about.wxml -->
+<scroll-view scroll-y class="scrollPage">
+  <view class="UCenter-bg">
+    <image src="/images/logo.png" class="png" mode="widthFix"></image>
+    <view class="text-xl">盒子记账
+      <text class="text-df">v1.0</text>
+    </view>
+    <image src="../../images/wave.gif" mode="scaleToFill" class="gif-wave"></image>
+  </view>
+</scroll-view>
+ <view class="padding flex text-center text-grey bg-white shadow-warp">
+    <!-- <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-orange">{{app.globalData.balance}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-attentionfill"></text> 预算结余</view>
+    </view> -->
+    <view class="flex flex-sub flex-direction solid-right">
+      <view class="text-xxl text-blue">{{output}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-unfold"></text> 总支出</view>
+    </view>
+    <view class="flex flex-sub flex-direction">
+      <view class="text-xxl text-green">{{input}}</view>
+      <view class="margin-top-sm">
+        <text class="cuIcon-fold"></text> 总收入</view>
+    </view>
+  </view>
+    <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg radius">
+      <view class="cu-item">
+        <navigator class="content" url="/pages/chart/index" hover-class="none">
+          <text class="cuIcon-creativefill text-orange"></text>
+          <text class="text-grey">图表分析</text>
+        </navigator>
+      </view>
+      <!-- <view class="cu-item">
+        <navigator class="content" url="/pages/budget/budget" hover-class="none">
+          <text class="cuIcon-edit text-blue"></text>
+          <text class="text-grey">设定预算</text>
+        </navigator>
+      </view> -->
+    </view>
+
+  
+ 

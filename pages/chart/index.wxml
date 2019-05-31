@@ -1,0 +1,55 @@
+<!-- index.wxml -->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <view slot="content">账单分析</view>
+</cu-custom>
+
+
+<view class="swiper-tab">
+  <block wx:for="{{swipertab}}" wx:key="sptab">
+    <view class="swiper-tab-list {{currtab == item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="tabSwitch">{{item.name}}</view>
+  </block>
+</view>
+ 
+<swiper current="{{currtab}}" class="swiper-box" duration="300" style="height:{{deviceH-31}}px" bindchange="tabChange">
+  <swiper-item>
+    <scroll-view class="chart-box" scroll-y="true">
+      <view class="title">
+        <text>支出图</text>
+      </view>
+      <view class="container">
+        <canvas canvas-id="pieCanvasCon" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+      </view>
+    </scroll-view>
+  </swiper-item>
+  
+  <swiper-item>
+    <scroll-view class="chart-box" scroll-y="true">
+      <view class="title">
+        <text>{{swipertab[1].name}}图</text>
+      </view>
+      <view class="container">
+        <canvas canvas-id="pieCanvasPro" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+      </view>
+    </scroll-view>
+  </swiper-item>
+</swiper>
+
+
+
+<block wx:if="{{TabCur==0}}">
+  <view>
+    <view class="container">
+      <canvas canvas-id="pieCanvasCon" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+  </view>
+  </view>
+</block>
+
+
+<block wx:if="{{TabCur==1}}">
+  <view>
+    <view class="container">
+      <canvas canvas-id="pieCanvasPro" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
+  </view>
+  </view>
+</block>

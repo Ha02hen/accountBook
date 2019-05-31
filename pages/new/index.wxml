@@ -1,0 +1,83 @@
+<!-- index.wxml -->
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">账单列表</view></cu-custom>
+<view>
+  <view class="cu-bar bg-white solid-bottom margin-top">
+    <view class="action">
+      <text class="cuIcon-title text-orange "></text> {{accountData.desc}}
+    </view>
+    <view class="action">
+      <text class="text-green text-xl text-bold" wx:if="{{accountData.type=='true'}}">-{{accountData.cost}}</text>
+      <text class="text-red text-xl text-bold" wx:else>{{accountData.income}}</text>
+    </view>
+  </view>
+  <view class="cu-list menu {{menuBorder?'sm-border':''}} {{menuCard?'card-menu margin-top':''}}">
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-circlefill text-grey"></text>
+        <text class="text-grey">分类</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm" wx:if="{{accountData.type=='true'}}">支出 / {{accountType}}</text>
+        <text class="text-grey text-sm" wx:else>收入 / {{accountType}}</text>
+      </view>
+    </view>
+    
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content">
+        <text class="cuIcon-time text-grey"></text>
+        <text class="text-grey">时间</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm" wx:if="{{accountData.type}}">{{accountData.date}}   {{accountData.time}}</text>
+      </view>
+    </view>
+
+    <view class="cu-item {{menuArrow?'arrow':''}}">
+      <view class="content" wx:if="{{acconutData.location != ''}}">
+        <text class="cuIcon-location text-grey"></text>
+        <text class="text-grey">地址</text>
+      </view>
+      <view class="action">
+        <text class="text-grey text-sm" wx:if="{{accountData.type}}">{{accountData.location}}</text>
+      </view>
+    </view>
+
+    <view class="cu-form-group">
+      <view class="grid col-4 grid-square flex-sub">
+        <view class="bg-img" wx:for="{{accountData.imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{accountData.imgList[index]}}">
+          <image src='{{accountData.imgList[index]}}' mode='aspectFill'></image>
+        </view>
+      </view>
+    </view>
+    
+    <view class="box padding solid{{size?'s':''}}-left margin-top">
+      <view class="cu-bar btn-group">
+        <button class="cu-btn block bg-red margin-tb-sm lg" bindtap="showModal" data-target="DialogModal1">删除</button>
+        <button class="cu-btn block bg-green margin-tb-sm lg"><navigator url='../edit/edit?id={{Id}}'>编辑</navigator></button>
+      </view>
+    </view>
+
+    <view class="cu-modal {{modalName=='DialogModal1'?'show':''}}">
+      <view class="cu-dialog">
+        <view class="cu-bar bg-white justify-end">
+          <view class="content">提示</view>
+          <view class="action" bindtap="hideModal">
+            <text class="cuIcon-close text-red"></text>
+          </view>
+        </view>
+        <view class="padding-xl">
+          是否删除该条账单
+        </view>
+        <view class="cu-bar bg-white justify-end">
+          <view class="action">
+            <button class="cu-btn line-green text-green" bindtap="hideModal" data-value = "0">取消</button>
+            <button class="cu-btn bg-green margin-left" bindtap="hideModal" data-value = "1">确定</button>
+
+          </view>
+        </view>
+      </view>
+    </view>
+
+    
+  </view>
+</view>
