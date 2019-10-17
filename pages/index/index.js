@@ -23,7 +23,7 @@ Page({
 
     // 获取记录
     var tempAccountData = wx.getStorageSync("accountData") || [];
-    console.log(tempAccountData)
+    // console.log(tempAccountData)
     this.caculateCostTotal(tempAccountData);
     this.caculateIncomeTotal(tempAccountData);
     // this.caculateBalance(this.data.balance);
@@ -40,7 +40,7 @@ Page({
 
     // 获取记录
     var tempAccountData = wx.getStorageSync("accountData") || [];
-    console.log(tempAccountData)
+    // console.log(tempAccountData)
     this.caculateCostTotal(tempAccountData);
     this.caculateIncomeTotal(tempAccountData);
     this.caculateBalance(this.data.balance);
@@ -48,7 +48,7 @@ Page({
     this.setData({
       accountData: tempAccountData
     });
-    console.log(this.data.accountData)
+    // console.log(this.data.accountData)
   },
 
   /**
@@ -56,8 +56,8 @@ Page({
    */
   onHide: function () {
     console.log('onHide')
-    console.log(this.data.accountCostTotal)
-    console.log(this.data.accountIncomeTotal)
+    // console.log(this.data.accountCostTotal)
+    // console.log(this.data.accountIncomeTotal)
     app.globalData.output = this.data.accountCostTotal,
     app.globalData.input = this.data.accountIncomeTotal
   },
@@ -96,6 +96,7 @@ Page({
   },
   //删除行
   deleteRow: function (e) {
+    // console.log("del",e)
     var index = e.target.dataset.indexKey;
     var tempAccountData = wx.getStorageSync("accountData") || [];
     tempAccountData.splice(index, 1);
@@ -132,11 +133,11 @@ Page({
   //计算收入总额
   caculateIncomeTotal: function (data) {
     var tempTotal = 0;
-    console.log(data);
+    // console.log(data);
     for (var x in data) {
       if (data[x].type == "false") { tempTotal += parseFloat(data[x].income);}
     }
-    console.log(tempTotal)
+    // console.log(tempTotal)
     this.setData({
       accountIncomeTotal: parseFloat(tempTotal)
     })
@@ -145,22 +146,22 @@ Page({
   //按照时间进行排序
   setTimeSort: function (tempAccountData) {
     tempAccountData.sort(function (x, y) {
-      console.log("set-"+x.date)
+      // console.log("set-"+x.date)
       return x.date>y.date?0:1;
     });
-    console.log("time:"+tempAccountData)
+    // console.log("time:"+tempAccountData)
   },
   //跳转详情页
-  jumpItem: function(e)
-  {
-    console.log("jumpItem:"+e);
-  },
+  // jumpItem: function(e)
+  // {
+  //   console.log("jumpItem:"+e);
+  // },
   caculateBalance: function(x)
   {
     if (parseFloat(this.data.accountIncomeTotal)>=0) { x = x + parseFloat(this.data.accountIncomeTotal)}
     if (parseFloat(this.data.accountCostTotal) >= 0) { x = x - parseFloat(this.data.accountCostTotal)}
-    console.log(x)
+    // console.log(x)
     app.globalData.balance = x
-    console.log(app.globalData)
+    // console.log(app.globalData)
   }
 })

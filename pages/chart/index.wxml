@@ -34,22 +34,3 @@
     </scroll-view>
   </swiper-item>
 </swiper>
-
-
-
-<block wx:if="{{TabCur==0}}">
-  <view>
-    <view class="container">
-      <canvas canvas-id="pieCanvasCon" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
-  </view>
-  </view>
-</block>
-
-
-<block wx:if="{{TabCur==1}}">
-  <view>
-    <view class="container">
-      <canvas canvas-id="pieCanvasPro" class="canvas" style="height:300px" bindtouchstart="touchHandler"></canvas>
-  </view>
-  </view>
-</block>

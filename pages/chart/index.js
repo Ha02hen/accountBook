@@ -23,10 +23,6 @@ Page({
     tempAccountData4: 0,
     tempAccountData5: 0
   },
-  touchHandler: function (e) {
-    console.log(pieChartCon.getCurrentDataIndex(e));
-    console.log(pieChartPro.getCurrentDataIndex(e));
-  },
   onLoad: function (e) {
     var windowWidth = 320;
     console.log('onLoad')
@@ -64,7 +60,7 @@ Page({
     this.setData({
       tempAccountDataA: parseFloat(tempTotal)
     })
-    console.log("A:" + parseFloat(tempTotal))
+    // console.log("A:" + parseFloat(tempTotal))
   },
   caculateCostBTotal: function (data) {
     var tempTotal = 0;
@@ -76,7 +72,7 @@ Page({
     this.setData({
       tempAccountDataB: parseFloat(tempTotal)
     })
-    console.log("B:" + parseInt(tempTotal))
+    // console.log("B:" + parseInt(tempTotal))
 
   },
   caculateCostCTotal: function (data) {
@@ -89,7 +85,7 @@ Page({
     this.setData({
       tempAccountDataC: parseFloat(tempTotal)
     })
-    console.log("C:" + parseInt(tempTotal))
+    // console.log("C:" + parseInt(tempTotal))
 
   },
   caculateCostDTotal: function (data) {
@@ -102,7 +98,7 @@ Page({
     this.setData({
       tempAccountDataD: parseFloat(tempTotal)
     })
-    console.log("D:" + parseInt(tempTotal))
+    // console.log("D:" + parseInt(tempTotal))
 
   },
   caculateCostETotal: function (data) {
@@ -115,7 +111,7 @@ Page({
     this.setData({
       tempAccountDataE: parseFloat(tempTotal)
     })
-    console.log("E:"+parseInt(tempTotal))
+    // console.log("E:"+parseInt(tempTotal))
   },
 
   //收入计算方法
@@ -129,7 +125,7 @@ Page({
     this.setData({
       tempAccountData1: parseFloat(tempTotal)
     })
-    console.log("A:" + parseFloat(tempTotal))
+    // console.log("A:" + parseFloat(tempTotal))
   },
   caculateIncome2Total: function (data) {
     var tempTotal = 0;
@@ -141,7 +137,7 @@ Page({
     this.setData({
       tempAccountData2: parseFloat(tempTotal)
     })
-    console.log("B:" + parseInt(tempTotal))
+    // console.log("B:" + parseInt(tempTotal))
 
   },
   caculateIncome3Total: function (data) {
@@ -154,7 +150,7 @@ Page({
     this.setData({
       tempAccountData3: parseFloat(tempTotal)
     })
-    console.log("C:" + parseInt(tempTotal))
+    // console.log("C:" + parseInt(tempTotal))
 
   },
   caculateIncome4Total: function (data) {
@@ -167,7 +163,7 @@ Page({
     this.setData({
       tempAccountData4: parseFloat(tempTotal)
     })
-    console.log("D:" + parseInt(tempTotal))
+    // console.log("D:" + parseInt(tempTotal))
 
   },
   caculateIncome5Total: function (data) {
@@ -180,7 +176,7 @@ Page({
     this.setData({
       tempAccountData5: parseFloat(tempTotal)
     })
-    console.log("E:" + parseInt(tempTotal))
+    // console.log("E:" + parseInt(tempTotal))
   },
 
   tabSelect(e) {
@@ -191,11 +187,11 @@ Page({
   },
   
   PickerChange(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       index: e.detail.value
     })
-    console.log(this.data.index)
+    // console.log(this.data.index)
   },
   getDeviceInfo: function () {
     let that = this

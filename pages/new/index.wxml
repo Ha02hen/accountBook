@@ -53,7 +53,8 @@
     <view class="box padding solid{{size?'s':''}}-left margin-top">
       <view class="cu-bar btn-group">
         <button class="cu-btn block bg-red margin-tb-sm lg" bindtap="showModal" data-target="DialogModal1">删除</button>
-        <button class="cu-btn block bg-green margin-tb-sm lg"><navigator url='../edit/edit?id={{Id}}'>编辑</navigator></button>
+        <button class="cu-btn block bg-green margin-tb-sm lg" bindtap='btnClick'>编辑</button>
+        <!-- <navigator url='../edit/edit?id={{Id}}'>编辑</navigator> -->
       </view>
     </view>
 

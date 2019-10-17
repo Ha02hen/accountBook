@@ -31,7 +31,7 @@ Page({
       accountData: tempAccountData[this.data.Id],
       imgList: tempAccountData[this.data.Id].imgList
     });
-    console.log(this.data.accountData.type)
+    // console.log(this.data.accountData.type)
     if(this.data.accountData.type == "true"){
       this.setData({
         accountType: this.data.pickerCon[this.data.accountData.item]
@@ -41,8 +41,8 @@ Page({
         accountType: this.data.pickerPro[this.data.accountData.item]
       })
     }
-    console.log(this.data.accountData)
-    console.log(this.data.accountType)
+    // console.log(this.data.accountData)
+    // console.log(this.data.accountType)
   },
 
   /**
@@ -108,13 +108,13 @@ Page({
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
-    console.log(this.data.modelName)
+    // console.log(this.data.modelName)
   },
   hideModal(e) {
     this.setData({
       modalName: null
     })
-    console.log(e.currentTarget.dataset.value)
+    // console.log(e.currentTarget.dataset.value)
     if (e.currentTarget.dataset.value == "1"){
       this.deleteRow(e)
     }
@@ -129,5 +129,12 @@ Page({
   //   wx.navigateTo({
   //     url: '../edit/edit?Id={{Id}}'
   //   })
-  // }
+  // },
+  btnClick: function()
+  {
+    // console.log("Id",this.data.Id)
+    wx.navigateTo({
+      url: "../edit/edit?id="+this.data.Id,
+    })
+  }
 })

@@ -16,41 +16,41 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("about --On Load--")
     this.setData({
       input:app.globalData.input,
       output: app.globalData.output,
       budget:app.globalData.budget,
       balance: app.globalData.balance
     })
-    console.log("budget",this.data.budget)
+    // console.log("budget",this.data.budget,this.data.budget)
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+    console.log("about --On Ready--")
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function (options) {
-    // this.setData({
-    //   input: app.globalData.input,
-    //   output: app.globalData.output,
-    //   budget: options.budget,
-    //   balance: app.globalData.balance
-    // })
-    // console.log("budget", this.data.budget)
-    // app.globalData.budget = this.data.budget
+    console.log("about --On Show--")
+    this.setData({
+      input: app.globalData.input,
+      output: app.globalData.output,
+      budget: app.globalData.budget,
+      balance: app.globalData.balance
+    })
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    
+    console.log("about --On Hide--")
   },
 
   /**

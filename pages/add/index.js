@@ -15,7 +15,7 @@ Page({
     imgList: [],
     modalName: null,
     textareaAValue: '',
-    inidata:{},
+    inidata:1,
 
     buttonloading: false,
     address: ''
@@ -56,23 +56,23 @@ Page({
     })
   },
   PickerChange(e) {
-    console.log(e);
+    // console.log(e);
     this.setData({
       index: e.detail.value
     })
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
   },
   TimeChange(e) {
     this.setData({
       time: e.detail.value
     })
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
   },
   DateChange(e) {
     this.setData({
       date: e.detail.value
     })
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
   },
   ChooseImage() {
     wx.chooseImage({
@@ -84,9 +84,9 @@ Page({
           this.setData({
             imgList: this.data.imgList.concat(res.tempFilePaths)
           })
-          console.log(this.data.imgList)
+          // console.log(this.data.imgList)
         } else {
-          console.log(res.tempFilePaths)
+          // console.log(res.tempFilePaths)
           this.setData({
             imgList: res.tempFilePaths
           })
@@ -112,7 +112,7 @@ Page({
             imgList: this.data.imgList
           })
         }
-        console.log(this.data.imgList)
+        // console.log(this.data.imgList)
       }
     })
   },
@@ -143,16 +143,16 @@ Page({
     this.setData({
       checkbox: items
     })
-    console.log(checkbox)
+    // console.log(checkbox)
   },
   switch1Change: function (e) {
-    console.log('switch1 发生 change 事件，携带值为', e.detail.value)
+    // console.log('switch1 发生 change 事件，携带值为', e.detail.value)
     var that = this
     if (e.detail.value == true)
     {
       wx.chooseLocation({
         success: function(res) {
-          console.log(res)
+          // console.log(res)
           that.setData({
             address:res.address
           })
@@ -163,9 +163,9 @@ Page({
   
   //表单提交，把数据放入本地缓存
   formSubmit: function (e) {
-    console.log('form提交被触发', e.detail.value)
+    // console.log('form提交被触发', e.detail.value)
     
-    console.log("data.location:" + this.data.address)
+    
     this.setData({
       buttonloading:true
     })
@@ -181,7 +181,16 @@ Page({
     var location = this.data.address
     var imgList = this.data.imgList
 
-    console.log(location)
+    
+
+    if(cost > 0)
+    {
+      type = "true"
+    }else if(income > 0){
+      type = "false"
+    }
+    // console.log("data.type:" + type)
+    // console.log("cost-type",typeof(cost),"income-type",typeof(income))
 
     if (item == null || item < 0) {
       wx.showToast({
@@ -192,7 +201,8 @@ Page({
         buttonloading: false
       });
       return false;
-    } else if (desc.toString().length <= 0) {
+    }
+    if (desc.toString().length <= 0) {
       wx.showToast({
         title: '描述不能为空',
         icon: 'none'
@@ -201,7 +211,8 @@ Page({
         buttonloading: false
       });
       return false;
-    }else if (type=="true") {
+    }
+    if (type=="true") {
       if (cost.toString().length <= 0)
       {
         wx.showToast({
@@ -215,7 +226,7 @@ Page({
       }
       
     }else if(type=="false"){
-      if (income.toString().length <= 0 )
+      if (income.toString().length <= 0)
       {
         wx.showToast({
           title: '收入金额不能为零',
@@ -227,7 +238,18 @@ Page({
         });
         return false;
       }
-    }else if(date == "0")
+    }
+    if (type == "") {
+      wx.showToast({
+        title: '请设置金额',
+        icon: 'none'
+      })
+      this.setData({
+        buttonloading: false
+      });
+      return false;
+    }
+    if(date == "")
     {
       wx.showToast({
         title: '请设置日期',
@@ -237,7 +259,8 @@ Page({
         buttonloading: false
       });
       return false;
-    }else if(time == "0")
+    }
+    if(time == "")
     {
       wx.showToast({
         title: '请设置时间',
@@ -252,29 +275,28 @@ Page({
     //新增记录
     var tempAccountData = wx.getStorageSync("accountData") || [];
     tempAccountData.unshift({ desc: desc, type: type, item: item, date: date, remarks: remarks, time: time, income: income, cost: cost, location: location, imgList: imgList });
-    console.log(tempAccountData)
+    // console.log(tempAccountData)
     wx.setStorageSync("accountData", tempAccountData);
-    console.log(tempAccountData)
+    // console.log(tempAccountData)
     this.setData({
       accountData: tempAccountData,
       buttonloading: false
     });
-    console.log('form提交被触发', tempAccountData)
+    // console.log('form提交被触发', tempAccountData)
     wx.navigateBack({
       url:'../index/index'
     })
   },
   switchChange: function (e) {
-    console.log('switch 发生 change 事件，携带值为', e.detail.value)
+    // console.log('switch 发生 change 事件，携带值为', e.detail.value)
   },
   //表单重置
   formReset: function (e) {
-    console.log('form发生了reset事件，携带数据为：', e.detail.value)
+    // console.log('form发生了reset事件，携带数据为：', e.detail.value)
     // this.setData({
     //   hasLocation: false
     // })
     
-    var inidata = this.data.inidata
     this.setData({
       cost : -1,
       item : '',
@@ -283,8 +305,6 @@ Page({
       desc : '',
       type : '',
       location : '',
-      date:0,
-      time: 0
     })
   }
 })

@@ -1,13 +1,13 @@
 <!--edit.wxml-->
-<cu-custom bgColor="bg-gradual-orange" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">编辑账单</view></cu-custom>
+<cu-custom bgColor="bg-gradual-blue" isBack="{{true}}"><view slot="backText">返回</view><view slot="content">编辑账单</view></cu-custom>
 
-<scroll-view scroll-x class="bg-white nav text-center">
+<!-- <scroll-view scroll-x class="bg-white nav text-center">
   <view class="cu-item {{index==TabCur?'text-orange cur':''}}" wx:for="{{switch}}" wx:key bindtap="tabSelect" data-id="{{index}}">
     {{item}}
   </view>
-</scroll-view>
+</scroll-view> -->
 
-<block wx:if="{{TabCur==0}}">
+<block wx:if="{{itemType=='true'}}">
   <form bindsubmit="formSubmit" bindreset="formReset">
 
     <view class="cu-form-group margin-top">
@@ -34,15 +34,14 @@
 
     <view class="cu-form-group">
       <view class="title">支出金额</view>
-      <input placeholder="{{accountData.cost}}" type="number" name="cost"/>
-      <text class="cuIcon-locationfill text-orange"></text>
+      <input placeholder="{{accountData.cost}}" type="digit" name="cost"/>
     </view>
 
     <view class="cu-form-group">
       <view class="title" >日期选择</view>
       <picker mode="date" name="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
         <view class="picker">
-          {{accountData.date}}
+          {{date}}
         </view>
       </picker>
     </view>
@@ -51,15 +50,14 @@
       <view class="title">时间选择</view>
       <picker mode="time" name="time" value="{{time}}" start="09:01" end="21:01" bindchange="TimeChange">
         <view class="picker">
-          {{accountData.time}}
+          {{time}}
         </view>
       </picker>
     </view>
     
     <view class="cu-form-group">
       <view class="title">地址选择</view>
-        <switch class="red sm" checked  wx:if="{{accountData.location != ''}}" bindchange="switch1Change"/>
-        <switch class="red sm" checked  wx:else bindchange="switch1Change"/>
+        <switch class="red sm" bindchange="switch1Change"/>
     </view>
     
     <view class="cu-bar bg-white margin-top">
@@ -100,15 +98,18 @@
 
 </block>
 
-<block wx:if="{{TabCur==1}}">
+<block wx:if="{{itemType=='false'}}">
   <form bindsubmit="formSubmit" bindreset="formReset">
 
     <view class="cu-form-group margin-top">
       <view class="title">描述</view>
-      <input placeholder="请输入" name="desc"></input>
+      <input placeholder="{{accountData.desc}}" name="desc"></input>
       <text class="text-orange">
         <radio-group name="type">
-          <label><radio value="false" checked='true' disabled='true'/>radio1</label>
+          <label><radio value="true" checked='true' disabled='true'/></label>
+        </radio-group>
+        <radio-group name="location">
+          <label><radio value="true" checked='true' disabled='true'/></label>
         </radio-group>
       </text>
     </view>
@@ -117,19 +118,18 @@
       <view class="title">类别</view>
       <picker bindchange="PickerChange" name="item" value="{{index}}" range="{{pickerPro}}">
         <view class="picker">
-          {{index?pickerPro[index]:'请选择收入类别'}}
+          {{index?pickerPro[index]:accountType}}
         </view>
       </picker>
     </view>
 
     <view class="cu-form-group">
       <view class="title">收入金额</view>
-      <input placeholder="请输入" type="number" name="income"/>
-      <text class="cuIcon-locationfill text-orange"></text>
+      <input placeholder="{{accountData.income}}" type="digit" name="income"/>
     </view>
 
     <view class="cu-form-group">
-      <view class="title">日期选择</view>
+      <view class="title" >日期选择</view>
       <picker mode="date" name="date" value="{{date}}" start="2015-09-01" end="2020-09-01" bindchange="DateChange">
         <view class="picker">
           {{date}}
@@ -148,11 +148,7 @@
     
     <view class="cu-form-group">
       <view class="title">地址选择</view>
-      <picker mode="region" bindchange="RegionChange" value="{{region}}" custom-item="{{customItem}}">
-        <view class="picker">
-          {{region[0]}}，{{region[1]}}，{{region[2]}}
-        </view>
-      </picker>
+        <switch class="red sm" bindchange="switch1Change"/>
     </view>
     
     <view class="cu-bar bg-white margin-top">
@@ -180,11 +176,11 @@
 
     <!-- !!!!! placeholder 在ios表现有偏移 建议使用 第一种样式 -->
     <view class="cu-form-group margin-top">
-      <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="备注" name="remarks"></textarea>
+      <textarea maxlength="-1" disabled="{{modalName!=null}}" bindinput="textareaAInput" placeholder="{{accountData.remarks==''?'备注':accountData.remarks}}" name="remarks"></textarea>
     </view>
     <view class="box padding solid{{size?'s':''}}-left margin-top">
       <view class="cu-bar btn-group">
-        <button class="cu-btn bg-green shadow-blur round lg" form-type='submit'>保存</button>
+        <button class="cu-btn block bg-green margin-tb-sm lg" form-type='submit' name='type' loading='{{buttonloading}}'>保存</button>
       </view>
     </view>
   </form>
